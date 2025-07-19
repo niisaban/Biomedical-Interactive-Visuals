@@ -1,0 +1,5 @@
+Gene,log2FC,p-value,significant
+GeneA,2.5,0.001,Yes
+GeneB,-1.8,0.04,Yes
+GeneC,0.7,0.35,No
+GeneD,-2.3,0.0005,Yes

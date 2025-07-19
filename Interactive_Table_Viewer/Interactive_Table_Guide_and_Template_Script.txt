@@ -1,0 +1,62 @@
+
+Interactive Table Viewer: Reader Guide & Reusable Script
+---------------------------------------------------------
+
+📘 Step-by-Step Guide to Build Your Own Interactive Table Viewer (Dash-based)
+
+1. Prepare Your CSV Data
+-------------------------
+- Download the provided template: DifferentialExpression_Template.csv
+- Replace with your own data while preserving column headers:
+    - Gene
+    - log2FC
+    - p-value
+    - significant
+
+2. Required Python Libraries
+-----------------------------
+Install required packages if not already:
+    pip install dash dash-bootstrap-components pandas
+
+3. Sample Dash Script
+----------------------
+
+import pandas as pd
+from dash import Dash, dash_table, html
+import dash_bootstrap_components as dbc
+
+# Load your data – replace this with your own CSV path
+df = pd.read_csv("DifferentialExpression_Template.csv")
+
+# Create the Dash app
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.title = "Interactive Gene Table"
+
+# Define layout
+app.layout = dbc.Container([
+    html.H2("Differential Expression Table", className="mt-4"),
+    dash_table.DataTable(
+        data=df.to_dict("records"),
+        columns=[{"name": i, "id": i} for i in df.columns],
+        filter_action="native",
+        sort_action="native",
+        page_size=10,
+        style_table={"overflowX": "auto"},
+        style_cell={"textAlign": "left", "padding": "5px"},
+        style_header={"backgroundColor": "#f5f5f5", "fontWeight": "bold"}
+    )
+], fluid=True)
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+4. Customize (Optional)
+------------------------
+- Change colors using Dash Bootstrap themes
+- Add conditional formatting or export buttons
+- Add dropdown filters or integrate into multi-tab dashboard
+
+📍 Launch the script and access the app at:
+    http://127.0.0.1:8050
+
+This table tool helps visualize your dataset in an interactive, sortable, and searchable format—perfect for exploring gene expression or omics outputs interactively.
