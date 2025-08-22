@@ -20,6 +20,11 @@ Interactive visualization and analysis recipes for biological data — built to 
 - UMAP — https://niisaban.github.io/Biomedical-Interactive-Visuals/Interactive_UMAP_3D_CellTypes.html
 
 > Home page for all demos: **https://niisaban.github.io/Biomedical-Interactive-Visuals/**
+## 👀 Preview
+
+[![Raincloud demo](assets/screenshots/raincloud_example.png)](https://niisaban.github.io/Biomedical-Interactive-Visuals/Interactive_RaincloudPlot_GeneExpression.html)
+[![Ridge demo](assets/screenshots/ridge_example.png)](https://niisaban.github.io/Biomedical-Interactive-Visuals/Interactive_RidgePlot_GeneExpression.html)
+[![UMAP demo](assets/screenshots/umap_example.png)](https://niisaban.github.io/Biomedical-Interactive-Visuals/Interactive_UMAP_3D_CellTypes.html)
 
 ---
 
