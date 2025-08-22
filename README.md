@@ -20,6 +20,11 @@ Interactive visualization and analysis recipes for biological data — built to 
 - UMAP — https://niisaban.github.io/Biomedical-Interactive-Visuals/Interactive_UMAP_3D_CellTypes.html
 
 > Home page for all demos: **https://niisaban.github.io/Biomedical-Interactive-Visuals/**
+## 👀 Preview
+
+[![Raincloud demo](assets/screenshots/raincloud_example.png)](https://niisaban.github.io/Biomedical-Interactive-Visuals/Interactive_RaincloudPlot_GeneExpression.html)
+[![Ridge demo](assets/screenshots/ridge_example.png)](https://niisaban.github.io/Biomedical-Interactive-Visuals/Interactive_RidgePlot_GeneExpression.html)
+[![UMAP demo](assets/screenshots/umap_example.png)](https://niisaban.github.io/Biomedical-Interactive-Visuals/Interactive_UMAP_3D_CellTypes.html)
 
 ---
 
@@ -67,6 +72,18 @@ jupyter lab
 
 
 ### 🔐 License & Copyright
+
+This repository is dual-licensed:
+- Code is provided under the MIT License (see LICENSE).
+- Narrative content, figures, and exported HTML demos are provided under CC BY 4.0 (see LICENSE-CC-BY-4.0).
+
+Scope:
+- “Code” includes .py files and reusable code cells in notebooks.
+- “Content” includes explanatory notebook text, images in /assets, and files published via /docs.
+
+Attribution:
+If you reuse content, please cite: Hammond, A.S., Biomedical-Interactive-Visuals (GitHub).
+
 
 All interactive assets in this repository are licensed under the [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) license.
 
