@@ -71,25 +71,8 @@ pip install -r requirements.txt
 jupyter lab
 
 
-### 🔐 License & Copyright
+### 🔏 License
+- **Code:** [MIT](LICENSE)
+- **Content (figures, narrative text in notebooks, exported HTML demos):** [CC BY 4.0](LICENSE-CC-BY-4.0)
 
-This repository is dual-licensed:
-- Code is provided under the MIT License (see LICENSE).
-- Narrative content, figures, and exported HTML demos are provided under CC BY 4.0 (see LICENSE-CC-BY-4.0).
-
-Scope:
-- “Code” includes .py files and reusable code cells in notebooks.
-- “Content” includes explanatory notebook text, images in /assets, and files published via /docs.
-
-Attribution:
-If you reuse content, please cite: Hammond, A.S., Biomedical-Interactive-Visuals (GitHub).
-
-
-All interactive assets in this repository are licensed under the [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) license.
-
-> © 2025 Abdulrahman S. Hammond.  
-> This repository is intended as a companion resource to the author’s book and does **not transfer copyright of the book or printed materials**.  
-> No part of the book may be reproduced, stored, or distributed without written permission from the author.
-
-This repository is licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0). 
-See the LICENSE file for details.
+See [NOTICE](NOTICE) for scope details.
