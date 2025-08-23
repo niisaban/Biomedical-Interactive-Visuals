@@ -76,3 +76,11 @@ jupyter lab
 - **Content (figures, narrative text in notebooks, exported HTML demos):** [CC BY 4.0](LICENSE-CC-BY-4.0)
 
 See [NOTICE](NOTICE) for scope details.
+
+### 🧾 Citation
+If you use this repository, please cite:
+
+Hammond, A.S. (2025). *Biomedical-Interactive-Visuals* (v0.1.0). https://github.com/niisaban/Biomedical-Interactive-Visuals
+
+For machine-readable metadata, see [CITATION.cff](CITATION.cff).
+
