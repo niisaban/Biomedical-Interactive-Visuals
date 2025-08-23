@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it as below."
+title: "Biomedical-Interactive-Visuals"
+version: 0.1.0
+authors:
+  - family-names: Hammond
+    given-names: Abdulrahman S.
+affiliations:
+  - name: Massachusetts, USA
+date-released: 2025-08-22
+repository-code: "https://github.com/niisaban/Biomedical-Interactive-Visuals"
+url: "https://niisaban.github.io/Biomedical-Interactive-Visuals/"
+abstract: "Interactive biomedical data visualization demos and reproducible notebooks, with shareable HTML pages."
+keywords:
+  - biomedical visualization
+  - data science
+  - Python
+  - UMAP
+  - reproducible research
+license: MIT
+preferred-citation:
+  type: software
+  authors:
+    - family-names: Hammond
+      given-names: Abdulrahman S.
+  title: "Biomedical-Interactive-Visuals"
+  version: 0.1.0
+  year: 2025
+  url: "https://github.com/niisaban/Biomedical-Interactive-Visuals"
