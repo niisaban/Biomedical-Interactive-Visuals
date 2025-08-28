@@ -1,0 +1,45 @@
+**Commit message:** `docs(pipeline-demo): add demo README`
+
+---
+
+# Step 6 — Add the GitHub Actions workflow (automates running & publishing)
+
+**Add file → Create new file**  
+**File name:** `.github/workflows/mini-pipeline.yml`  
+**Contents:**
+```yaml
+name: mini-pipeline
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'Pipeline-Demo/**'
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: pip install -r Pipeline-Demo/requirements.txt
+
+      - name: Run pipeline
+        run: python Pipeline-Demo/src/pipeline.py
+
+      - name: Commit generated outputs
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: |
+            Pipeline-Demo/data/processed
+            Pipeline-Demo/reports/summary.md
+            Pipeline-Demo/site
+          message: "ci: update mini pipeline outputs"
+          default_author: github_actions
