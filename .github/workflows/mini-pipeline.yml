@@ -1,7 +1,6 @@
 name: mini-pipeline
 
 on:
-  # manual run button + re-run on changes in the demo folder
   workflow_dispatch:
   push:
     paths:
@@ -11,15 +10,17 @@ permissions:
   contents: write
 
 jobs:
-  run:
+  mini:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Show repo tree (debug)
-        run: ls -R
+      - name: Show repo root (debug)
+        run: |
+          pwd
+          ls -la
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -43,5 +44,5 @@ jobs:
             PipelineDemo/data/processed
             PipelineDemo/reports
             PipelineDemo/site
-          message: "ci(pipeline): publish demo outputs [skip ci]"
+          message: "ci(pipeline): publish mini pipeline outputs"
           default_author: github_actions
