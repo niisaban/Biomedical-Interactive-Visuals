@@ -1,0 +1,13 @@
+sample_id,condition,gene,expression
+S1,Control,GeneA,5.1
+S2,Control,GeneA,4.9
+S3,TreatA,GeneA,6.8
+S4,TreatA,GeneA,6.1
+S5,TreatB,GeneA,5.4
+S6,TreatB,GeneA,5.0
+S7,Control,GeneB,3.2
+S8,Control,GeneB,3.5
+S9,TreatA,GeneB,4.1
+S10,TreatA,GeneB,4.0
+S11,TreatB,GeneB,3.6
+S12,TreatB,GeneB,3.8
