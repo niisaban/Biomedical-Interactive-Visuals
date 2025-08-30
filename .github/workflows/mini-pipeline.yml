@@ -12,6 +12,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: mini-pipeline-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   mini:
     runs-on: ubuntu-latest
