@@ -41,10 +41,8 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run pipeline (if present)
-        if: ${{ hashFiles('PipelineDemo/src/pipeline.py') != '' }}
-        working-directory: PipelineDemo
-        run: python src/pipeline.py
-
+        if: ${{ hashFiles('PipelineDemo/pipeline.py') != '' }}
+        run: python PipelineDemo/pipeline.py
 
       # commit outputs (relative to PipelineDemo) 
       - name: Commit generated outputs
