@@ -37,24 +37,23 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # .github/workflows/mini-pipeline.yml  (only the bottom part shown)
       - name: Run pipeline
         run: python src/pipeline.py
 
       - name: Commit generated outputs
-        if: ${{ github.event_name == 'push' }}
         uses: EndBug/add-and-commit@v9
         with:
           add: |
-            data/processed
-            reports
-            site
-          message: "ci(mini): run pipeline and update outputs"
-          default_author: github_actions
+            PipelineDemo/data/processed
+            PipelineDemo/reports
+            PipelineDemo/site
+        message: "ci(mini): run pipeline and update outputs"
+        default_author: github_actions
 
       - name: Upload site artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: mini-pipeline-site
-          # actions/* paths are repo-root relative
           path: PipelineDemo/site
