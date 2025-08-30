@@ -32,16 +32,16 @@ jobs:
       - name: (debug) verify files
         run: |
           pwd && ls -la
-          test -f PipelineDemo/requirements.txt || echo "::notice::no requirements.txt — skipping pip install"
-          test -f PipelineDemo/src/pipeline.py  || echo "::notice::no pipeline.py — skipping run"
+          test -f requirements.txt  || echo "::notice file=PipelineDemo/requirements.txt::no requirements.txt — skipping pip install"
+          test -f src/pipeline.py   || echo "::notice file=PipelineDemo/src/pipeline.py::no pipeline.py — skipping run"
 
       - name: Install dependencies (if present)
         if: ${{ hashFiles('PipelineDemo/requirements.txt') != '' }}
-        run: pip install -r PipelineDemo/requirements.txt
+        run: pip install -r requirements.txt
 
       - name: Run pipeline (if present)
         if: ${{ hashFiles('PipelineDemo/src/pipeline.py') != '' }}
-        run: python PipelineDemo/src/pipeline.py
+        run: python src/pipeline.py
 
       - name: Upload outputs (optional)
         if: always()
