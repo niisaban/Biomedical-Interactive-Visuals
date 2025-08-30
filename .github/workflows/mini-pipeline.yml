@@ -48,7 +48,6 @@ jobs:
 
       - name: Commit generated outputs
         uses: EndBug/add-and-commit@v9
-        working-directory: .
         with:
           add: |
             PipelineDemo/data/processed
