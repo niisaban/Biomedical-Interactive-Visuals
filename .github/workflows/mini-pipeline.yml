@@ -29,18 +29,22 @@ jobs:
           python-version: '3.11'
 
       - name: (debug) verify files
+        working-directory: PipelineDemo
         run: |
           pwd && ls -la
-          test -f requirements.txt  || echo "::notice::no requirements.txt — skipping pip install"
-          test -f src/pipeline.py   || echo "::notice::no src/pipeline.py — will skip run"
+          test -f requirements.txt || echo "::notice::no requirements.txt — skipping pip install"
+          test -f src/pipeline.py  || echo "::notice::no pipeline.py — will skip run"
 
       - name: Install dependencies (if present)
         if: ${{ hashFiles('PipelineDemo/requirements.txt') != '' }}
+        working-directory: PipelineDemo
         run: pip install -r requirements.txt
 
       - name: Run pipeline (if present)
-        if: ${{ hashFiles('**/PipelineDemo/src/pipeline.py') != '' }}
-        run: python PipelineDemo/src/pipeline.py
+        if: ${{ hashFiles('PipelineDemo/src/pipeline.py') != '' }}
+        working-directory: PipelineDemo
+        run: python src/pipeline.py
+
 
       # commit outputs (relative to PipelineDemo) 
       - name: Commit generated outputs
