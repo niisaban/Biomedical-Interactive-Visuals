@@ -18,41 +18,40 @@ concurrency:
 jobs:
   mini:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: PipelineDemo
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: (debug) verify files
-        working-directory: PipelineDemo
+      - name: Install dependencies
         run: |
-          pwd && ls -la
-          test -f requirements.txt || echo "::notice::no requirements.txt — skipping pip install"
-          test -f src/pipeline.py  || echo "::notice::no pipeline.py — will skip run"
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-      - name: Install dependencies (if present)
-        if: ${{ hashFiles('PipelineDemo/requirements.txt') != '' }}
-        working-directory: PipelineDemo
-        run: pip install -r requirements.txt
+      - name: Run pipeline
+        run: python src/pipeline.py
 
-      - name: Run pipeline (if present)
-        if: ${{ hashFiles('PipelineDemo/pipeline.py') != '' }}
-        run: python PipelineDemo/pipeline.py
-
-      # commit outputs (relative to PipelineDemo) 
       - name: Commit generated outputs
-        if: ${{ github.event_name == 'push' }}
         uses: EndBug/add-and-commit@v9
         with:
           add: |
-            PipelineDemo/data/processed
-            PipelineDemo/reports
-            PipelineDemo/site
+            data/processed
+            reports
+            site
           message: "ci(mini): run pipeline and update outputs"
           default_author: github_actions
-          skip_empty: true
+
+      # Handy: grab the site as a downloadable artifact
+      - name: Upload site artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mini-pipeline-site
+          path: PipelineDemo/site
