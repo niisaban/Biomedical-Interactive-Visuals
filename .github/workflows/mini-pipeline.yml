@@ -57,10 +57,5 @@ jobs:
           path: PipelineDemo/site
 
 
-          on:
-  workflow_dispatch:
-  push:
-    paths:
-      - 'PipelineDemo/**'
-      - '.github/workflows/mini-pipeline.yml'
+   
 
