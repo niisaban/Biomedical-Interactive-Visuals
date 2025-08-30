@@ -18,6 +18,7 @@ concurrency:
 jobs:
   mini:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -26,36 +27,30 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          cache: pip
-          cache-dependency-path: PipelineDemo/requirements.txt
 
-      - name: (debug) verify files
+      - name: (debug) show repo
         run: |
-          pwd && ls -la
-          test -f requirements.txt  || echo "::notice file=PipelineDemo/requirements.txt::no requirements.txt — skipping pip install"
-          test -f src/pipeline.py   || echo "::notice file=PipelineDemo/src/pipeline.py::no pipeline.py — skipping run"
+          pwd
+          ls -la
+          ls -la PipelineDemo || true
 
       - name: Install dependencies (if present)
-        if: ${{ hashFiles('PipelineDemo/requirements.txt') != '' }}
-        run: pip install -r requirements.txt
+        run: |
+          if [ -f PipelineDemo/requirements.txt ]; then
+            pip install -r PipelineDemo/requirements.txt
+          else
+            echo "::notice file=PipelineDemo/requirements.txt::no requirements.txt — skipping pip install"
+          fi
 
       - name: Run pipeline (if present)
-        if: ${{ hashFiles('PipelineDemo/src/pipeline.py') != '' }}
-        run: python src/pipeline.py
-
-      - name: Upload outputs (optional)
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: mini-pipeline-outputs
-          path: |
-            PipelineDemo/data/processed/**
-            PipelineDemo/reports/**
-          if-no-files-found: ignore
-          retention-days: 7
+        run: |
+          if [ -f PipelineDemo/src/pipeline.py ]; then
+            python PipelineDemo/src/pipeline.py
+          else
+            echo "::notice file=PipelineDemo/src/pipeline.py::no pipeline.py — skipping run"
+          fi
 
       - name: Commit generated outputs
-        if: ${{ github.event_name == 'push' }}
         uses: EndBug/add-and-commit@v9
         with:
           add: |
