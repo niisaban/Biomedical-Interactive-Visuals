@@ -1,5 +1,0 @@
-
-### requirements.txt
-```txt
-pandas==2.2.2
-plotly==5.23.0
