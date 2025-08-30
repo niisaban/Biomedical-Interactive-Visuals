@@ -39,23 +39,29 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: (debug) verify paths
+        run: |
+          echo "PWD=$(pwd)"
+          ls -la "${{ github.workspace }}/PipelineDemo"
+          test -f "${{ github.workspace }}/PipelineDemo/requirements.txt"
+          test -f "${{ github.workspace }}/PipelineDemo/src/pipeline.py"
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r "${{ github.workspace }}/PipelineDemo/requirements.txt"
 
       - name: Run pipeline
-        run: |
-          # if your script is at PipelineDemo/src/pipeline.py keep this line;
-          # if it lives at PipelineDemo/pipeline.py change to "python pipeline.py"
-          python src/pipeline.py
+        run: python "${{ github.workspace }}/PipelineDemo/src/pipeline.py"
 
       - name: Commit generated outputs
         uses: EndBug/add-and-commit@v9
         with:
+          skip_empty: true
           add: |
             PipelineDemo/data/processed
             PipelineDemo/reports
             PipelineDemo/site
           message: "ci(mini): commit mini-pipeline outputs"
           default_author: github_actions
+
