@@ -28,35 +28,29 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: (debug) show repo
+      - name: (debug) verify files
         run: |
-          pwd
-          ls -la
-          ls -la PipelineDemo || true
+          pwd && ls -la
+          test -f requirements.txt  || echo "::notice::no requirements.txt — skipping pip install"
+          test -f src/pipeline.py   || echo "::notice::no src/pipeline.py — will skip run"
 
       - name: Install dependencies (if present)
-        run: |
-          if [ -f PipelineDemo/requirements.txt ]; then
-            pip install -r PipelineDemo/requirements.txt
-          else
-            echo "::notice file=PipelineDemo/requirements.txt::no requirements.txt — skipping pip install"
-          fi
+        if: ${{ hashFiles('PipelineDemo/requirements.txt') != '' }}
+        run: pip install -r requirements.txt
 
       - name: Run pipeline (if present)
-        run: |
-          if [ -f PipelineDemo/src/pipeline.py ]; then
-            python PipelineDemo/src/pipeline.py
-          else
-            echo "::notice file=PipelineDemo/src/pipeline.py::no pipeline.py — skipping run"
-          fi
+        if: ${{ hashFiles('PipelineDemo/src/pipeline.py') != '' }}
+        run: python src/pipeline.py
 
+      # commit outputs (relative to PipelineDemo) 
       - name: Commit generated outputs
+        if: ${{ github.event_name == 'push' }}
         uses: EndBug/add-and-commit@v9
         with:
           add: |
-            PipelineDemo/data/processed
-            PipelineDemo/reports
-            PipelineDemo/site
-          message: "ci(mini): update mini-pipeline outputs"
+            data/processed
+            reports
+            site
+          message: "ci(mini): run pipeline and update outputs"
           default_author: github_actions
           skip_empty: true
