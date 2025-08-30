@@ -48,8 +48,8 @@ jobs:
             PipelineDemo/data/processed
             PipelineDemo/reports
             PipelineDemo/site
-        message: "ci(mini): run pipeline and update outputs"
-        default_author: github_actions
+          message: "ci(mini): run pipeline and update outputs"
+          default_author: github_actions
 
       - name: Upload site artifact
         if: always()
