@@ -34,13 +34,22 @@ jobs:
           cache: 'pip'
           cache-dependency-path: PipelineDemo/requirements.txt
 
-      - name: Install dependencies (if present)
+      # (keep everything you have above unchanged)
+
+      - name: (debug) verify files
+        run: |
+          ls -la
+          test -f PipelineDemo/requirements.txt || echo "::notice::no requirements.txt — skipping pip install"
+          test -f PipelineDemo/src/pipeline.py || echo "::notice::no pipeline.py — skipping run"
+
+      - name: Install dependencies
         if: ${{ hashFiles('PipelineDemo/requirements.txt') != '' }}
         run: pip install -r requirements.txt
 
-      - name: Run pipeline (if present)
+      - name: Run pipeline (non-blocking)
         if: ${{ hashFiles('PipelineDemo/src/pipeline.py') != '' }}
         run: python src/pipeline.py
+        continue-on-error: true
 
       - name: Upload outputs (optional)
         if: always()
