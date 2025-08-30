@@ -1,3 +1,6 @@
+[![mini-pipeline](https://github.com/niisaban/Biomedical-Interactive-Visuals/actions/workflows/mini-pipeline.yml/badge.svg)](https://github.com/niisaban/Biomedical-Interactive-Visuals/actions/workflows/mini-pipeline.yml)
+[**Live page →**](https://niisaban.github.io/Biomedical-Interactive-Visuals/PipelineDemo/site/)
+
 # Mini Pipeline Demo (local → cloud)
 
 How it works
