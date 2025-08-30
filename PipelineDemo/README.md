@@ -9,3 +9,4 @@ Run locally
 ```bash
 pip install -r PipelineDemo/requirements.txt
 python PipelineDemo/src/pipeline.py
+
